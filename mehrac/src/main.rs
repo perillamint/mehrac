@@ -108,25 +108,13 @@ async fn hub75_task(mut hub75: Hub75Pin) {
             } else {
                 hub75.d.set_low();
             }
-            //Timer::after(Duration::from_millis(1)).await;
             hub75.oe.set_low();
-            //Timer::after(Duration::from_millis(1)).await;
         }
 
-        //debug!("Frame output done!");
-
-        //debug!("Dummy output done!");
         if bank != prev_bank {
             info!("Bank changed to {}", bank);
             prev_bank = bank;
-
-            //hub75.r1.set_high();
-
-            //
-
-            // Do the business logic
         }
-        //Timer::after(Duration::from_millis(10)).await;
     }
 }
 
@@ -137,7 +125,9 @@ async fn motor_forward_task(mut forward: ExtiInput<'static, PA1>, mut ctrl: Outp
         forward.wait_for_low().await;
         info!("Motor forward!");
         ctrl.set_high();
-        forward.wait_for_high().await;
+        Timer::after(Duration::from_millis(5000)).await;
+        //forward.wait_for_high().await;
+        info!("Motor forward done!");
         ctrl.set_low();
     }
 }
@@ -149,7 +139,9 @@ async fn motor_retract_task(mut retract: ExtiInput<'static, PA2>, mut ctrl: Outp
         retract.wait_for_low().await;
         info!("Motor retract!");
         ctrl.set_high();
-        retract.wait_for_high().await;
+        Timer::after(Duration::from_millis(5000)).await;
+        //retract.wait_for_high().await;
+        info!("Motor retract done!");
         ctrl.set_low();
     }
 }
