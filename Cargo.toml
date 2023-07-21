@@ -9,3 +9,11 @@ members = [
     "embassy/embassy-stm32",
     "embassy/embassy-futures",
 ]
+
+[profile.dev]
+codegen-units = 1
+debug = true
+incremental = true
+lto = true
+opt-level = 's'
+panic = "abort"
