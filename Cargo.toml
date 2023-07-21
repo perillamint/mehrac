@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "mehrac",
+    "embassy/embassy-sync",
+    "embassy/embassy-executor",
+    "embassy/embassy-time",
+    "embassy/embassy-stm32",
+    "embassy/embassy-futures",
+]
